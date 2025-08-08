@@ -1,8 +1,3 @@
-# ...existing code...
-
-# =============================
-# 1. Verificar status dos WTS e outros servidores
-# =============================
 $servidores = @(
     @{ Nome = "WTS MATRIZ"; IP = "ip" },
     @{ Nome = "WTS PROTHEUS"; IP = "ip" },
@@ -23,9 +18,6 @@ foreach ($srv in $servidoresOutros) {
 }
 $statusServidores += "</ul>"
 
-# =============================
-# 2. Verificar backups dos PDVs
-# =============================
 $pastasBackup = @(
     @{ Nome = "PDV TAIO"; Caminho = "caminho" },
     @{ Nome = "PDV ALFREDO WAGNER"; Caminho = "caminho" }
@@ -50,9 +42,6 @@ foreach ($pasta in $pastasBackup) {
     $statusBackup += "</ul>"
 }
 
-# =============================
-# 3. Verificar arquivos TXT da Máxima
-# =============================
 $statusJsonMaxima = "<h3>📂 ÚLTIMOS ARQUIVOS DO ENDPOINT DA MÁXIMA:</h3><ul>"
 $pastaJson = "caminho"
 
@@ -83,15 +72,9 @@ if (Test-Path $pastaJson) {
 }
 $statusJsonMaxima += "</ul>"
 
-# =============================
-# 4. Gerar corpo final do HTML
-# =============================
 $htmlFooter = "</body></html>"
 $smtpBody = $htmlHeader + $statusServidores + $statusBackup + $statusJsonMaxima + $htmlFooter
 
-# =============================
-# 5. Enviar e-mail
-# =============================
 $smtpServer = "smtp"
 $smtpFrom = "de"
 $smtpTo = "para"
